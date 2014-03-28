@@ -1,0 +1,30 @@
+{
+  "name": "RegisterClient",
+  "version": "0.0.1",
+  "homepage": "https://github.com/",
+  "authors": [
+    "Andrew Stucki"
+  ],
+  "description": "Church Site",
+  "keywords": [
+    "browserify"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "sass-bootstrap": "~2.3.0",
+    "jquery": "~1.9.0",
+    "underscore": "~1.4.3",
+    "backbone": "~1.0.0",
+    "modernizr": "~2.6.2",
+    "font-awesome": "~3.2.1",
+    "handlebars": "~1.0.0"
+  }
+}

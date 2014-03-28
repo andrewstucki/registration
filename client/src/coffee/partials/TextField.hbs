@@ -1,0 +1,11 @@
+{{#if prepend}}
+<div class="input-prepend">
+  <span class="add-on">
+    <i class="{{prepend}}"></i>
+  </span>
+  <input class="input-medium {{extraClass}}" type="text" id="{{name}}-field" name="{{name}}" autocomplete="off">
+{{else}}
+<div>
+  <input class="input-medium {{extraClass}}" type="text" id="{{name}}-field" name="{{name}}" placeholder="{{label}}" autocomplete="off">
+{{/if}}
+</div>

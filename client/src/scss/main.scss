@@ -1,0 +1,90 @@
+$iconSpritePath: '/images/glyphicons-halflings.png';
+@import 'sass-bootstrap/lib/bootstrap';
+@import 'font-awesome/scss/font-awesome';
+
+@import 'chosen';
+@import 'chosen-override';
+@import 'mixins-css3';
+@import 'forms';
+@import 'font';
+@import 'buttons';
+@import 'tooltip-popover';
+@import 'backgrounds';
+@import 'colors';
+
+body {
+  overflow: auto;
+}
+
+.hero-unit {
+  margin: 50px auto 0 auto;
+  width: 600px;
+	h1 {
+		clear: both;
+	}
+}
+
+* {
+	font-family: "HeroLight";
+	margin: 0;
+}
+
+.control-label {
+	font-family: "Hero";
+	font-size: 30px;
+}
+
+.logo-head {
+	text-align: center;
+	margin-top: -50px;
+  # width: 200px;
+  # height: 50px;
+  # background: url("../images/acts2fellowship-umn-logo.png");
+}
+
+.alert-error, .alert-success, .alert-block {
+	display: none;
+}
+
+.btn-submit {
+	width: 50%;
+}
+
+html, body {
+	height: 100%;
+}
+
+#content {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -40px; /* the bottom margin is the negative value of the footer's height */
+}
+
+.footer, .push {
+	height: 40px; /* .push must be the same height as .footer */
+}
+
+.color-picker {
+  position: relative;
+  left: -170px;
+  width: 180px;
+  @include border-right-radius(5px);
+  border: 5px solid $whiteSmoke;
+}
+
+.background-selection {
+  list-style-type: none;
+  padding-left: 5px;
+  margin: 0;
+  background-color: $whiteSmoke;
+  
+  li {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    float: left;
+    cursor: pointer;
+  }
+
+}

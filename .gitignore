@@ -1,0 +1,14 @@
+bin/*
+pkg/*
+src/*
+client/.sass-cache/*
+client/.tmp/*
+client/src/vendor/bower_components/*
+client/node_modules/*
+server/assets/*
+server/backgrounds/*
+server/commands/run/*.rice-box.go
+config.json
+registration.db
+schema.json
+signups.csv

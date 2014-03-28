@@ -1,0 +1,80 @@
+@import 'colors';
+
+@mixin full_background($image) {
+  background: url("../backgrounds/#{$image}") no-repeat 0 0 fixed;
+  background-size: cover;
+}
+
+@mixin change_colors($color) {
+  .hero-unit {
+    background-color: $color;
+  }
+  
+  form .form-actions {
+    background-color: lighten($color, 5%);
+    border-top: 1px solid darken($color, 10%);
+  }
+}
+
+.bg1 {
+  @include full_background("bg1.jpg");
+  @include change_colors($blueVimeo);
+}
+
+.bg-select-1 {
+  background-color: $blueVimeo;
+}
+
+
+.bg2 {
+  @include full_background("bg2.jpg");
+  @include change_colors($greenLighter);
+}
+
+.bg-select-2 {
+  background-color: $greenLighter;
+}
+
+.bg3 {
+  @include full_background("bg3.jpg");
+  @include change_colors($grayTimberwolf);
+}
+
+.bg-select-3 {
+  background-color: $grayTimberwolf;
+}
+
+.bg4 {
+  @include full_background("bg4.jpg");
+  @include change_colors($orangeLighter);
+}
+
+.bg-select-4 {
+  background-color: $orangeLighter;
+}
+
+.bg5 {
+  @include full_background("bg5.jpg");
+  @include change_colors($turquoiseDull);
+}
+
+.bg-select-5 {
+  background-color: $turquoiseDull;
+}
+
+.bg6 {
+  @include full_background("bg6.jpg");
+  @include change_colors($limeDull);
+}
+
+.bg-select-6 {
+  background-color: $limeDull;
+}
+
+.bg7 {
+  @include full_background("bg7.jpg");
+}
+
+.bg-select-7 {
+  background-color: $graySilver;
+}

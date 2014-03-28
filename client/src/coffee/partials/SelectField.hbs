@@ -1,0 +1,10 @@
+<select class="chzn-select" id="{{name}}-field" name="{{name}}" style="display: none;" autocomplete="off">
+  <option value="">
+    &nbsp;
+  </option>
+  {{#each values}}
+    <option value="{{.}}">
+      {{.}}
+    </option>
+  {{/each}}
+</select>
