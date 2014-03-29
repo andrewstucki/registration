@@ -9,6 +9,9 @@ import (
 	"os"
 	"os/signal"
 	"time"
+	"compress/gzip"
+	"io"
+	"strings"
 
 	"github.com/GeertJohan/go.rice"
 	"github.com/emicklei/go-restful"
@@ -114,6 +117,33 @@ func runServer(cmd *commands.Command, args ...string) {
 	fmt.Println("\nShutting down server")
 }
 
+type gzipResponseWriter struct {
+	io.Writer
+	http.ResponseWriter
+}
+ 
+func (w gzipResponseWriter) Write(b []byte) (int, error) {
+  if "" == w.Header().Get("Content-Type") {
+      // If no content type, apply sniffing algorithm to un-gzipped body.
+      w.Header().Set("Content-Type", http.DetectContentType(b))
+  }
+  return w.Writer.Write(b)
+}
+
+func gzipHandler(h http.Handler) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if !strings.Contains(r.Header.Get("Accept-Encoding"), "gzip") {
+			h.ServeHTTP(w, r)
+			return
+		}
+		w.Header().Set("Content-Encoding", "gzip")
+		gz := gzip.NewWriter(w)
+		defer gz.Close()
+		gzr := gzipResponseWriter{Writer: gz, ResponseWriter: w}
+		h.ServeHTTP(gzr, r)
+	}
+}
+
 func serverLoop(port uint) {
 	wsContainer := restful.NewContainer()
 	signup := endpoints.SignupEndpoint{}
@@ -122,17 +152,17 @@ func serverLoop(port uint) {
 
 	if backgroundsPath == "" {
 		backgroundBox := rice.MustFindBox("../../backgrounds")
-		wsContainer.Handle("/backgrounds/", http.StripPrefix("/backgrounds/", http.FileServer(backgroundBox.HTTPBox())))
+		wsContainer.Handle("/backgrounds/", http.StripPrefix("/backgrounds/", gzipHandler(http.FileServer(backgroundBox.HTTPBox()))))
 		log.Println("Using built-in backgrounds")
 	} else {
-		wsContainer.Handle("/backgrounds/", http.StripPrefix("/backgrounds/", http.FileServer(http.Dir(backgroundsPath))))
+		wsContainer.Handle("/backgrounds/", http.StripPrefix("/backgrounds/", gzipHandler(http.FileServer(http.Dir(backgroundsPath)))))
 		log.Printf("Serving backgrounds from %s", backgroundsPath)
 	}
 
 	assetBox := rice.MustFindBox("../../assets")
 
 	// register on different handler so that the path prefixes don't conflict
-	wsContainer.Handle("/", http.FileServer(assetBox.HTTPBox()))
+	wsContainer.Handle("/", gzipHandler(http.FileServer(assetBox.HTTPBox())))
 
 	schemaService := new(restful.WebService)
 	schemaService.Path("/schema.json").

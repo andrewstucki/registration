@@ -6,7 +6,7 @@ deps:
 	go get github.com/GeertJohan/go.rice
 	go get github.com/GeertJohan/go.rice/rice
 	go get github.com/emicklei/go-restful
-	cd client && npm install -g grunt-cli && npm install -g bower
+	gem install bundler && npm install -g grunt-cli && npm install -g bower
 	cd client && bundle install && npm install && bower install
 
 client:
