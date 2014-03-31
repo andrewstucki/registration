@@ -3,8 +3,8 @@ all: build
 
 deps:
 	go get github.com/mattn/go-sqlite3
-	go get github.com/GeertJohan/go.rice
-	go get github.com/GeertJohan/go.rice/rice
+	go get github.com/andrewstucki/go.rice
+	go get github.com/andrewstucki/go.rice/rice
 	go get github.com/emicklei/go-restful
 	cd client; bundle install; npm install; bower install
 
