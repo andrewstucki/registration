@@ -1,4 +1,4 @@
-export GOPATH := $(shell pwd)
+export GOPATH := $(CURDIR)
 all: client embed build
 
 deps:
