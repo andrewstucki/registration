@@ -22,8 +22,10 @@ package network
 //   char **interfaces = (char **)malloc(sizeof(char*) * pIfList->dwNumberOfItems);
 //   for (i = 0; i < (int) pIfList->dwNumberOfItems; i++) {
 //     pIfInfo = (WLAN_INTERFACE_INFO *) &pIfList->InterfaceInfo[i];
-//	   StringFromGUID2(&pIfInfo->InterfaceGuid, (LPOLESTR) &GuidString, sizeof(GuidString)/sizeof(*GuidString));
-//     interfaces[i] = GuidString.c_str();
+//     int size = sizeof(GuidString)/sizeof(*GuidString);
+//     StringFromGUID2(&pIfInfo->InterfaceGuid, (LPOLESTR) &GuidString, size);
+//     interfaces[i] = (char *)malloc(size+1);
+//     wcstombs_s(NULL, interfaces[i], size+1, GuidString, size+1);
 //   }
 //   return interfaces;
 // }
