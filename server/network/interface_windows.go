@@ -28,7 +28,7 @@ package network
 //   return interfaces;
 // }
 //
-// char * setupAdhocNetwork(char * interface, char * ssid, unsigned int securityMode, unsigned int channel, char * password) {
+// char * setupAdhocNetwork(char * iface, char * ssid, unsigned int securityMode, unsigned int channel, char * password) {
 //   return "localhost";
 // }
 import "C"
