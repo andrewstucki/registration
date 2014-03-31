@@ -179,6 +179,7 @@ module.exports = (grunt) ->
   grunt.registerTask "build", [
     "clean:build",
     "concurrent:build",
+
     "browserify",
     "concat",
     "uglify",

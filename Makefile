@@ -1,5 +1,5 @@
 export GOPATH := $(CURDIR)
-all: client embed build
+all: build
 
 deps:
 	go get github.com/mattn/go-sqlite3
@@ -14,17 +14,14 @@ tools:
 	npm install -g bower
 
 client:
-	cd client; grunt
+	cd client && grunt
 
-embed:
-	cd server/commands/run; ../../../bin/rice embed
-
-build:
-	cd server; go build -o ../bin/register
+build: client
+	cd server && go build -o ../bin/register && cd commands/run && ../../../bin/rice append --exec ../../../bin/register
 
 clean:
 	cd client; grunt clean
 	cd server; ../bin/rice clean
 	rm -rf bin/register
 
-.PHONY: clean client
+.PHONY: clean client build append

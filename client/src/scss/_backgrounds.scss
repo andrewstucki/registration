@@ -52,3 +52,29 @@
 .bg-select-4 {
   background-color: $orangeLighter;
 }
+
+.bg5 {
+  @include full_background("bg5.jpg");
+  @include change_colors($turquoiseDull);
+}
+
+.bg-select-5 {
+  background-color: $turquoiseDull;
+}
+
+.bg6 {
+  @include full_background("bg6.jpg");
+  @include change_colors($limeDull);
+}
+
+.bg-select-6 {
+  background-color: $limeDull;
+}
+
+.bg7 {
+  @include full_background("bg7.jpg");
+}
+
+.bg-select-7 {
+  background-color: $graySilver;
+}
