@@ -8,8 +8,8 @@ import (
 )
 
 func convertStringsToSlice(strings **C.char) []string {
-	defer C.free(unsafe.Pointer(strings))
-	stringValues := (*[1 << 30]*C.char)(unsafe.Pointer(strings))
+	defer C.free(unsafe.Pointer(strings))	
+	stringValues := (*[1 << 20]*C.char)(unsafe.Pointer(strings))
 	count := 0
 	var stringValue *C.char = stringValues[count]
 	rStrings := make([]string, 0, 0)
