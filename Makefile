@@ -6,7 +6,7 @@ deps:
 	go get github.com/GeertJohan/go.rice
 	go get github.com/GeertJohan/go.rice/rice
 	go get github.com/emicklei/go-restful
-	cd client && bundle install && npm install && bower install
+	cd client; bundle install; npm install; bower install
 
 tools:
 	gem install bundler
@@ -14,17 +14,17 @@ tools:
 	npm install -g bower
 
 client:
-	cd client && grunt
+	cd client; grunt
 
 embed:
-	cd server/commands/run && ../../../bin/rice embed
+	cd server/commands/run; ../../../bin/rice embed
 
 build:
-	cd server && go build -o ../bin/register
+	cd server; go build -o ../bin/register
 
 clean:
-	cd client && grunt clean
-	cd server && ../bin/rice clean
+	cd client; grunt clean
+	cd server; ../bin/rice clean
 	rm -rf bin/register
 
 .PHONY: clean client
