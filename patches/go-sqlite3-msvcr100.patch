@@ -1,0 +1,12 @@
+diff --git a/sqlite3_windows.go b/sqlite3_windows.go
+index 7193dfb..12f2352 100644
+--- a/sqlite3_windows.go
++++ b/sqlite3_windows.go
+@@ -2,6 +2,6 @@ package sqlite3
+
+ /*
+ #cgo CFLAGS: -I. -fno-stack-check -fno-stack-protector -mno-stack-arg-probe
+-#cgo LDFLAGS: -lmingwex -lmingw32
++#cgo LDFLAGS: -lmingwex -lmingw32 -lmsvcr100
+ */
+ import "C"
