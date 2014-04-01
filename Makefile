@@ -1,8 +1,12 @@
 STARTTIME = @date '+%s' > $@_time
-ENDTIME = @read st < $@_time ; st=$$((`date '+%s'`-$$st-68400)) ; echo Total time: `date -r $$st '+%H:%M:%S'`
+ENDTIME = @read st < $@_time ; st=$$((`date '+%s'`-$$st-68400)) ; echo Total time to run task: `date -r $$st '+%M'` minutes `date -r $$st '+%S'` seconds
 
 export GOPATH := $(CURDIR)
 all: client build
+	@echo ---------------
+	@echo Build Complete!
+	@echo ---------------
+	@echo ""
 
 deps:
 	@echo ---------------------------
@@ -18,15 +22,17 @@ deps:
 	@echo Getting go-restful
 	@go get github.com/emicklei/go-restful
 	$(ENDTIME)
-	@cd client
 	@echo ""
 	@echo ---------------------------
 	@echo Getting client dependencies
 	@echo ---------------------------
 	$(STARTTIME)
-	@bundle install > /dev/null 2>&1
-	@npm install > /dev/null 2>&1
-	@bower install > /dev/null 2>&1
+	@echo Running "bundle install"
+	@cd client && bundle install > /dev/null 2>&1
+	@echo Running "npm install"
+	@cd client && npm install > /dev/null 2>&1
+	@echo Running "bower install"
+	@cd client && bower install > /dev/null 2>&1
 	$(ENDTIME)
 	@echo ""
 	@echo -----------------------------
@@ -48,21 +54,18 @@ client:
 	@echo ---------------
 	@echo Building client
 	@echo ---------------
-	@cd client
 	$(STARTTIME)
-	@grunt > /dev/null 2>&1
+	@cd client && grunt > /dev/null 2>&1
 	$(ENDTIME)
 
 build:
 	@echo ---------------
 	@echo Building server
 	@echo ---------------
-	@cd server
 	$(STARTTIME)
-	@go build -o ../bin/register > /dev/null 2>&1
-	@cd commands/run
-	@../../../bin/rice append --exec ../../../bin/register
-	@zip -A ../../../bin/register
+	@cd server && go build -o ../bin/register > /dev/null 2>&1
+	@cd server/commands/run && ../../../bin/rice append --exec ../../../bin/register
+	@zip -A bin/register > /dev/null
 	$(ENDTIME)
 
 clean:
