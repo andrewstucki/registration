@@ -13,7 +13,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/GeertJohan/go.rice"
+	"github.com/andrewstucki/go.rice"
 	"github.com/emicklei/go-restful"
 
 	"../../commands"
