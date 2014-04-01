@@ -10,6 +10,7 @@ package network
 // #include <wtypes.h>
 // #include <stdio.h>
 // #include <stdlib.h>
+// #include <string.h>
 // char** enumerateInterfaces() {
 //   HANDLE hClient = NULL;
 //   DWORD dwMaxClient = 2;
@@ -32,16 +33,17 @@ package network
 // }
 //
 // void onNotification(PWLAN_NOTIFICATION_DATA data, PVOID context) {
-//   printf("%x, %x, %s", data->NotificationSource, data->NotificationCode, data->InterfaceGuid);
+//   return;
 // }
 //
 // char * setupAdhocNetwork(char * iface, char * ssid, unsigned int securityMode, unsigned int channel, char * password) {
+//   printf("Attempting to set interface: %s\n", iface);
+//   printf("Attempting to use password: %s\n", password);
 //   HANDLE hClient = NULL;
 //   DWORD dwMaxClient = 2;
 //   DWORD dwCurVersion = 0;
 //   PDWORD source = NULL;
 //   PDWORD rc = NULL;
-//   // WLAN_HOSTED_NETWORK_STATUS status = {0};
 //   ULONG ssidLength = strlen(ssid);
 //   int enabled = 1;
 //   DOT11_SSID ssidStruct;
@@ -57,9 +59,11 @@ package network
 //   WlanHostedNetworkSetProperty(hClient, wlan_hosted_network_opcode_connection_settings, sizeof(settings), &settings, rc, NULL);
 //   WlanHostedNetworkSetSecondaryKey(hClient, strlen(password)+1, password, 1, 1, rc, NULL);
 //   WlanHostedNetworkStartUsing(hClient, rc, NULL);
-//   // WlanHostedNetworkQueryStatus(hClient, &status, NULL);
 //
-//   return "localhost";
+//   char *s;
+//   s = (char *)malloc(10);
+//   strcpy(s, "localhost");
+//   return s;
 // }
 import "C"
 
