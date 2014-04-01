@@ -1,7 +1,7 @@
 @echo off 
 SET BUILDHOME=%~dp0
 SET GOPATH=%~dp0
-DEL %BUILDHOME%\bin\register.exe
+IF EXIST %BUILDHOME%\bin\register.exe DEL %BUILDHOME%\bin\register.exe
 pushd %BUILDHOME%\client
 echo ---------------
 echo Building client

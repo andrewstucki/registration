@@ -37,8 +37,11 @@ tools:
 	@echo -------------------------
 	@echo Installing required tools
 	@echo -------------------------
+	@echo Installing bundler
 	@gem install bundler > /dev/null 2>&1
+	@echo Installing grunt-cli
 	@npm install -g grunt-cli > /dev/null 2>&1
+	@echo Installing bower
 	@npm install -g bower > /dev/null 2>&1
 
 client:

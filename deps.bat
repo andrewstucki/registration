@@ -5,7 +5,7 @@ echo Getting server dependencies
 echo ---------------------------
 echo Getting go-sqlite3
 go get github.com/mattn/go-sqlite3
-echo Gettomg go.rice
+echo Getting go.rice
 go get github.com/andrewstucki/go.rice
 echo Getting rice binary
 go get github.com/andrewstucki/go.rice/rice
