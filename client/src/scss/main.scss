@@ -1,4 +1,4 @@
-$iconSpritePath: '/images/glyphicons-halflings.png';
+$FontAwesomePath: '..';
 @import 'sass-bootstrap/lib/bootstrap';
 @import 'font-awesome/scss/font-awesome';
 
@@ -37,9 +37,6 @@ body {
 .logo-head {
 	text-align: center;
 	margin-top: -50px;
-  # width: 200px;
-  # height: 50px;
-  # background: url("../images/acts2fellowship-umn-logo.png");
 }
 
 .alert-error, .alert-success, .alert-block {

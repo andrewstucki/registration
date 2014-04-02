@@ -2,6 +2,7 @@ module.exports = (grunt) ->
 
   # show elapsed time at the end
   require("time-grunt") grunt
+  require("./tasks/embed") grunt
 
   # load all grunt tasks
   require("load-grunt-tasks") grunt
@@ -69,14 +70,11 @@ module.exports = (grunt) ->
       options:
         sassDir: "<%= site.source %>/scss"
         specify: "<%= site.source %>/scss/main.scss"
-        cssDir: "<%= site.output %>"
-        imagesDir: "<%= site.source %>/images"
+        cssDir: "<%= site.build %>"
         javascriptsDir: "<%= site.source %>/js"
         fontsDir: "<%= site.source %>/font"
         importPath: "<%= bower.directory %>"
-        httpImagesPath: "images"
-        httpGeneratedImagesPath: "images/generated"
-        httpFontsPath: "font"
+        httpFontsPath: ""
         relativeAssets: false
         outputStyle: "compressed"
         noLineComments: true
@@ -93,9 +91,9 @@ module.exports = (grunt) ->
         files: [
           expand: true
           dot: true
-          cwd: "<%= site.source %>"
+          cwd: "<%= site.source %>/font"
           dest: "<%= site.output %>"
-          src: ["*.ico", "font/*", "images/*"]
+          src: ["*"]
         ]
       backgrounds:
         files: [
@@ -109,7 +107,7 @@ module.exports = (grunt) ->
     uglify:
       scripts:
         files:
-          "<%= site.output %>/application.js": ["<%= site.output %>/application.js"]
+          "<%= site.build %>/application.js": ["<%= site.build %>/application.js"]
 
     jade:
       templates:
@@ -117,7 +115,7 @@ module.exports = (grunt) ->
           expand: true
           cwd: "<%= site.source %>/templates"
           src: ["**/*.jade"]
-          dest: "<%= site.output %>"
+          dest: "<%= site.build %>"
           ext: ".html"
         ]
 
@@ -168,7 +166,16 @@ module.exports = (grunt) ->
           "<%= bower.directory %>/sass-bootstrap/js/bootstrap-button.js"
           "<%= site.build %>/scripts/combined-application.js"
         ]
-        dest: "<%= site.output %>/application.js"
+        dest: "<%= site.build %>/application.js"
+      
+    embed:
+      build:
+        files: [
+          expand: true
+          cwd: "<%= site.build %>"
+          src: ["*.html"]
+          dest: "<%= site.output %>"
+        ]
 
   grunt.registerTask "test", [
     "clean",
@@ -183,6 +190,7 @@ module.exports = (grunt) ->
     "browserify",
     "concat",
     "uglify",
+    "embed"
   ]
 
   grunt.registerTask "default", ["build"]
