@@ -153,9 +153,9 @@ module.exports = (grunt) ->
       scripts:
         src: [
           "<%= bower.directory %>/modernizr/modernizr.js"
-          "<%= bower.directory %>/jquery/jquery.js"
-          "<%= bower.directory %>/underscore/underscore.js"
-          "<%= bower.directory %>/backbone/backbone.js"
+          "<%= bower.directory %>/jquery/jquery.min.js"
+          "<%= bower.directory %>/underscore/underscore-min.js"
+          "<%= bower.directory %>/backbone/backbone-min.js"
           "<%= bower.directory %>/handlebars/handlebars.js"
           "<%= site.source %>/vendor/jquery.maskedinput.js"
           "<%= site.source %>/vendor/chosen.jquery.js"
