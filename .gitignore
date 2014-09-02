@@ -12,3 +12,7 @@ config.json
 registration.db
 schema.json
 signups.csv
+build_time
+deps_time
+client_time
+Gemfile.lock
